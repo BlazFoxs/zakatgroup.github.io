@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Masuk - Zakat Pintar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #047857; /* Hijau Emerald Utama */
+            --primary-dark: #064e3b;
+            --secondary-color: #fbbf24; /* Emas */
+            --dark-color: #1f2937;
+            --light-color: #f3f4f6;
+            --white: #ffffff;
+            --gray: #9ca3af;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- CONTAINER LOGIN (Split Layout) --- */
+        .login-container {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 1000px;
+            height: 600px;
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- BAGIAN KIRI (GAMBAR & TEKS) --- */
+        .login-left {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .login-left h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-left p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .login-left img {
+            width: 80%;
+            max-width: 300px;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+        }
+
+        /* --- BAGIAN KANAN (FORMULIR) --- */
+        .login-right {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Tombol Kembali ke Home */
+        .btn-back {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--gray);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .btn-back:hover { color: var(--primary-color); }
+
+        .login-header {
+            margin-bottom: 2rem;
+        }
+
+        .login-header h3 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 45px; /* Padding kiri untuk ikon */
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(4, 120, 87, 0.1);
+        }
+
+        /* Eye Icon for Password */
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        /* Checkbox & Forgot Password */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+        }
+
+        .forgot-pass {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Submit Button */
+        .btn-login-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-login-submit:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 5px 15px rgba(4, 120, 87, 0.3);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .register-link a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+                height: auto;
+                margin: 20px 0;
+            }
+            .login-left {
+                display: none; /* Sembunyikan bagian gambar di HP agar fokus ke form */
+            }
+            .login-right {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="login-left">
+            <h2>Zakat Pintar</h2>
+            <p>Kelola zakat, infaq, dan sedekah Anda dengan lebih mudah, transparan, dan tepat sasaran sesuai syariat.</p>
+            <img src="https://cdni.iconscout.com/illustration/premium/thumb/zakat-illustration-download-in-svg-png-gif-file-formats--charity-donation-muslim-islam-ramadan-pack-holidays-illustrations-4606275.png" alt="">
+        </div>
+
+        <div class="login-right">
+            <a href="index.html" class="btn-back" title="Kembali ke Beranda">
+                <i class="fas fa-times"></i>
+            </a>
+
+            <div class="login-header">
+                <h3>Selamat Datang!</h3>
+                <p>Silakan masuk untuk mengakses dashboard.</p>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" class="form-control" placeholder="nama@email.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="passwordInput" class="form-control" placeholder="Masukkan password" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Ingat Saya</label>
+                    </div>
+                    <a href="#" class="forgot-pass">Lupa Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login-submit">Masuk Sekarang</button>
+            </form>
+
+            <div class="register-link">
+                Belum punya akun? <a href="#">Daftar disini</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fitur Lihat/Sembunyikan Password
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = document.querySelector('.toggle-password');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // --- FUNGSI LOGIN (Langsung ke Admin) ---
+        function handleLogin(e) {
+            e.preventDefault(); // Mencegah reload halaman
+            
+            // Efek Loading (Ubah teks tombol)
+            const btn = document.querySelector('.btn-login-submit');
+            const originalText = btn.innerText;
+            btn.innerText = "Memproses...";
+            btn.style.opacity = "0.7";
+
+            // Delay sebentar agar terlihat prosesnya, lalu pindah
+            setTimeout(() => {
+                window.location.href = "admin.html"; // Redirect ke Dashboard Admin
+                
+                // Reset tombol (jika user kembali)
+                btn.innerText = originalText;
+                btn.style.opacity = "1";
+            }, 1500);
+        }
+    </script>
+
+</body>
+</html>
