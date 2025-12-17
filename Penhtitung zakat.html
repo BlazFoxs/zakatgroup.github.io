@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Zakat - Zakat Pintar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/Style Hitung zakat.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="logo">
+            <a href="index.html" style="display:flex; align-items:center; gap:10px;">
+                <i class="fas fa-hand-holding-heart"></i> Zakat Pintar
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="kalkulator.html" class="active-link">Hitung Zakat</a></li>
+            <li><a href="index.html#about">Tentang Metode</a></li>
+        </ul>
+        <a href="#" class="btn-login" onclick="alert('Fitur Login Admin')">
+            <i class="fas fa-user-circle"></i> Login
+        </a>
+    </nav>
+
+    <div class="page-header">
+        <h1>Kalkulator Zakat</h1>
+        <p>Hitung kewajiban zakat Fitrah dan Maal Anda secara akurat sesuai syariat.</p>
+    </div>
+
+    <section class="calculator-section">
+        <div class="calculator-container">
+            <div class="calc-tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'fitrah')">Zakat Fitrah</button>
+                <button class="tab-btn" onclick="openTab(event, 'maal')">Zakat Maal (Harta)</button>
+            </div>
+
+            <div id="fitrah" class="tab-content active">
+                <div class="form-group">
+                    <label>Jumlah Orang (Jiwa)</label>
+                    <input type="number" id="fitrah_jiwa" placeholder="Contoh: 4 (Ayah, Ibu, 2 Anak)" min="1">
+                    <small>Masukkan jumlah anggota keluarga yang wajib dizakati.</small>
+                </div>
+                <div class="form-group">
+                    <label>Harga Beras/Bahan Pokok saat ini (per Kg)</label>
+                    <input type="number" id="fitrah_harga" placeholder="Contoh: 15000" value="15000">
+                    <small>Standar zakat fitrah adalah 2,5 Kg beras per orang.</small>
+                </div>
+                <button class="btn-primary full-width" onclick="hitungZakatFitrah()">Hitung Zakat Fitrah</button>
+                
+                <div class="result-box" id="hasil_fitrah" style="display: none;">
+                    <h4>Total Zakat Fitrah:</h4>
+                    <span class="nominal" id="nominal_fitrah">Rp 0</span>
+                    <p>Setara dengan <span id="berat_beras">0</span> Kg Beras</p>
+                </div>
+            </div>
+
+            <div id="maal" class="tab-content">
+                <div class="alert-info">
+                    <i class="fas fa-info-circle"></i> 
+                    Nisab Zakat Maal setara dengan 85 gram emas. Jika total harta bersih mencapai nilai ini dan sudah berlalu 1 tahun (Haul), maka wajib dikeluarkan 2,5%.
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Harga Emas Saat Ini (per Gram)</label>
+                        <input type="number" id="harga_emas" value="1200000">
+                    </div>
+                    <div class="form-group">
+                        <label>Uang Tunai / Tabungan / Deposito</label>
+                        <input type="number" id="harta_uang" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Nilai Emas/Perak/Saham yg Dimiliki</label>
+                        <input type="number" id="harta_emas" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Hutang Jatuh Tempo (Pengurang)</label>
+                        <input type="number" id="hutang" placeholder="0">
+                    </div>
+                </div>
+
+                <button class="btn-primary full-width" onclick="hitungZakatMaal()">Hitung Zakat Maal</button>
+
+                <div class="result-box" id="hasil_maal" style="display: none;">
+                    <h4>Hasil Perhitungan:</h4>
+                    <p id="status_nisab" style="font-weight: bold; margin-bottom: 5px;"></p>
+                    <span class="nominal" id="nominal_maal">Rp 0</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Zakat Pintar - UNIDA Gontor</h3>
+            <p>Sistem Pendukung Keputusan Zakat Menggunakan Metode Weighted Product.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">&copy; 2025 Tim Peneliti Informatika.</p>
+        </div>
+    </footer>
+
+    <script src="Javascript/Javascript Hitung Zakat.js"></script>
+
+</body>
+</html>
